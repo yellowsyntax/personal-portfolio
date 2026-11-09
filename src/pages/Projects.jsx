@@ -1,70 +1,131 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import { CTA } from "../components";
-import { projects } from "../constants";
-import { arrow } from "../assets/icons";
+import { projects, site } from "../constants";
 
 const Projects = () => {
+  useEffect(() => {
+    const nodes = document.querySelectorAll(".projects-reveal");
+    if (!nodes.length) return undefined;
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      nodes.forEach((node) => node.classList.add("is-visible"));
+      return undefined;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.14, rootMargin: "0px 0px -6% 0px" }
+    );
+
+    nodes.forEach((node) => observer.observe(node));
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section className='max-container'>
-      <h1 className='head-text'>
-        My{" "}
-        <span className='blue-gradient_text drop-shadow font-semibold'>
-          Projects
-        </span>
-      </h1>
+    <div className='projects-page'>
+      <section className='projects-hero'>
+        <div
+          className='projects-hero__media'
+          style={{ backgroundImage: `url(${site.projectsHero.image})` }}
+          aria-hidden='true'
+        />
+        <div className='projects-hero__veil' aria-hidden='true' />
 
-      <p className='text-slate-500 mt-2 leading-relaxed'>
-        I've embarked on numerous projects throughout the years, but these are
-        the ones I hold closest to my heart. Many of them are open-source, so if
-        you come across something that piques your interest, feel free to
-        explore the codebase and contribute your ideas for further enhancements.
-        Your collaboration is highly valued!
-      </p>
+        <p className='projects-watermark projects-watermark--top' aria-hidden='true'>
+          {site.brand}
+        </p>
+        <p
+          className='projects-watermark projects-watermark--bottom'
+          aria-hidden='true'
+        >
+          marine
+        </p>
 
-      <div className='flex flex-wrap my-20 gap-16'>
-        {projects.map((project) => (
-          <div className='lg:w-[400px] w-full' key={project.name}>
-            <div className='block-container w-12 h-12'>
-              <div className={`btn-back rounded-xl ${project.theme}`} />
-              <div className='btn-front rounded-xl flex justify-center items-center'>
-                <img
-                  src={project.iconUrl}
-                  alt='threads'
-                  className='w-1/2 h-1/2 object-contain'
-                />
-              </div>
-            </div>
-
-            <div className='mt-5 flex flex-col'>
-              <h4 className='text-2xl font-poppins font-semibold'>
-                {project.name}
-              </h4>
-              <p className='mt-2 text-slate-500'>{project.description}</p>
-              <div className='mt-5 flex items-center gap-2 font-poppins'>
-                <Link
-                  to={project.link}
-                  target='_blank'
-                  rel='noopener noreferrer'
-                  className='font-semibold text-blue-600'
-                >
-                  Live Link
-                </Link>
-                <img
-                  src={arrow}
-                  alt='arrow'
-                  className='w-4 h-4 object-contain'
-                />
-              </div>
-            </div>
+        <div className='projects-hero__stage'>
+          <div className='projects-hero__copy'>
+            <p className='projects-kicker'>{site.projectsHero.kicker}</p>
+            <h1 className='projects-headline'>
+              <span>{site.projectsHero.headline[0]}</span>
+              <span>{site.projectsHero.headline[1]}</span>
+            </h1>
           </div>
-        ))}
-      </div>
 
-      <hr className='border-slate-200' />
+          <p className='projects-tagline'>{site.projectsHero.tagline}</p>
+        </div>
+      </section>
 
-      <CTA />
-    </section>
+      <section className='projects-below'>
+        <div className='projects-below__inner'>
+          <header className='projects-band'>
+            <h2 className='projects-section-title'>
+              My <span className='projects-mint'>Projects</span>
+            </h2>
+            <p className='projects-intro'>
+              Selected work across healthcare AI, claims systems, delivery
+              logistics, CCTV analytics, pharmacy POS, and IT tooling — systems
+              I&apos;ve built, deployed, and supported in production.
+            </p>
+          </header>
+
+          <div className='projects-grid'>
+            {projects.map((project, index) => {
+              const isLive = project.status === "live" && Boolean(project.url);
+              const indexLabel = String(index + 1).padStart(2, "0");
+
+              return (
+                <article
+                  className='projects-item projects-reveal'
+                  key={project.name}
+                  style={{ transitionDelay: `${index * 60}ms` }}
+                >
+                  <div className='projects-item__top'>
+                    <span className='projects-item__index'>{indexLabel}</span>
+                    <span
+                      className={`projects-item__status projects-item__status--${
+                        isLive ? "live" : "private"
+                      }`}
+                    >
+                      {isLive ? "Live" : "Private"}
+                    </span>
+                  </div>
+
+                  <h3 className='projects-item__title'>{project.name}</h3>
+                  <p className='projects-item__desc'>{project.description}</p>
+
+                  {isLive ? (
+                    <a
+                      className='projects-item__link'
+                      href={project.url}
+                      target='_blank'
+                      rel='noopener noreferrer'
+                    >
+                      Visit Site ↗
+                    </a>
+                  ) : (
+                    <Link className='projects-item__link' to='/contact'>
+                      Request a Demo →
+                    </Link>
+                  )}
+                </article>
+              );
+            })}
+          </div>
+
+          <div className='projects-cta'>
+            <CTA />
+          </div>
+        </div>
+      </section>
+    </div>
   );
 };
 

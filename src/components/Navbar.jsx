@@ -1,21 +1,47 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
-import { logo } from "../assets/images";
+import { site } from "../constants";
+
+const lightRoutes = ["/contact"];
 
 const Navbar = () => {
+  const { pathname } = useLocation();
+  const isLight = lightRoutes.includes(pathname);
+
   return (
-    <header className='header'>
-      <NavLink to='/'>
-        <img src={logo} alt='logo' className='w-18 h-18 object-contain' />
+    <header
+      className={`agency-nav agency-nav--global${isLight ? " agency-nav--light" : ""}`}
+    >
+      <NavLink to='/' className='agency-brand'>
+        {site.brand}
       </NavLink>
-      <nav className='flex text-lg gap-7 font-medium'>
-        <NavLink to='/about' className={({ isActive }) => isActive ? "text-blue-600" : "text-black" }>
-          About
-        </NavLink>
-        <NavLink to='/projects' className={({ isActive }) => isActive ? "text-blue-600" : "text-black"}>
-          Projects
-        </NavLink>
-      </nav>
+
+      <div className='agency-nav__right'>
+        <nav className='agency-nav__links'>
+          <NavLink
+            to='/about'
+            className={({ isActive }) => (isActive ? "is-active" : undefined)}
+          >
+            About
+          </NavLink>
+          <NavLink
+            to='/projects'
+            className={({ isActive }) => (isActive ? "is-active" : undefined)}
+          >
+            Projects
+          </NavLink>
+          <NavLink
+            to='/contact'
+            className={({ isActive }) => (isActive ? "is-active" : undefined)}
+          >
+            Contact
+          </NavLink>
+        </nav>
+        <button type='button' className='agency-menu' aria-label='Open menu'>
+          <span />
+          <span />
+        </button>
+      </div>
     </header>
   );
 };

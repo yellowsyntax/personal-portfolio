@@ -1,228 +1,202 @@
-import { meta, shopify, starbucks, tesla } from "../assets/images";
-import {
-    car,
-    contact,
-    css,
-    estate,
-    express,
-    git,
-    github,
-    html,
-    javascript,
-    linkedin,
-    mongodb,
-    motion,
-    mui,
-    nextjs,
-    nodejs,
-    pricewise,
-    react,
-    redux,
-    sass,
-    snapgram,
-    summiz,
-    tailwindcss,
-    threads,
-    typescript
-} from "../assets/icons";
+import { contact } from "../assets/icons";
 
-export const skills = [
-    {
-        imageUrl: css,
-        name: "CSS",
-        type: "Frontend",
-    },
-    {
-        imageUrl: express,
-        name: "Express",
-        type: "Backend",
-    },
-    {
-        imageUrl: git,
-        name: "Git",
-        type: "Version Control",
-    },
-    {
-        imageUrl: github,
-        name: "GitHub",
-        type: "Version Control",
-    },
-    {
-        imageUrl: html,
-        name: "HTML",
-        type: "Frontend",
-    },
-    {
-        imageUrl: javascript,
-        name: "JavaScript",
-        type: "Frontend",
-    },
-    {
-        imageUrl: mongodb,
-        name: "MongoDB",
-        type: "Database",
-    },
-    {
-        imageUrl: motion,
-        name: "Motion",
-        type: "Animation",
-    },
-    {
-        imageUrl: mui,
-        name: "Material-UI",
-        type: "Frontend",
-    },
-    {
-        imageUrl: nextjs,
-        name: "Next.js",
-        type: "Frontend",
-    },
-    {
-        imageUrl: nodejs,
-        name: "Node.js",
-        type: "Backend",
-    },
-    {
-        imageUrl: react,
-        name: "React",
-        type: "Frontend",
-    },
-    {
-        imageUrl: redux,
-        name: "Redux",
-        type: "State Management",
-    },
-    {
-        imageUrl: sass,
-        name: "Sass",
-        type: "Frontend",
-    },
-    {
-        imageUrl: tailwindcss,
-        name: "Tailwind CSS",
-        type: "Frontend",
-    },
-    {
-        imageUrl: typescript,
-        name: "TypeScript",
-        type: "Frontend",
-    }
+export const site = {
+  brand: "christian",
+  name: "Christian Oduro",
+  title: "Software Engineer & IT Officer",
+  location: "Ga East, Ghana",
+  email: "bluebird23szn@gmail.com",
+  phone: "+233 500 073 292",
+  headline: ["SYSTEMS", "THAT DELIVER"],
+  tagline:
+    "Software engineer and IT officer from Ghana — building backend, AI, and cloud systems for healthcare, security, recruitment, and logistics, then keeping them running in the real world.",
+  services: [
+    "Backend & APIs",
+    "AI / Computer Vision",
+    "Cloud & DevOps",
+    "Networking & IT",
+  ],
+  recentWork: {
+    label: "Live Project",
+    name: "Diatel",
+    image: "/images/hero.jpg?v=3",
+    link: "https://diateldelivery.com",
+  },
+  cta: {
+    label: "View All Projects",
+    link: "/projects",
+  },
+  projectsHero: {
+    image: "/images/projects-hero.png?v=3",
+    headline: ["BUILT", "IN THE WILD"],
+    kicker: "Selected Work · Production Systems",
+    tagline:
+      "Healthcare AI, claims engines, delivery logistics, CCTV analytics, and IT tooling — shipped and supported end to end.",
+  },
+};
+
+export const skillGroups = [
+  {
+    title: "Backend & APIs",
+    items: [
+      "Python",
+      "FastAPI",
+      "REST APIs",
+      "WebSocket",
+      "PostgreSQL (Neon)",
+      "Frontend development",
+      "Website design",
+      "Web apps",
+    ],
+  },
+  {
+    title: "AI / Computer Vision",
+    items: [
+      "YOLO",
+      "Face recognition",
+      "Retrieval QA",
+      "OCR (Tesseract)",
+      "Presidio",
+      "NeMo Guardrails",
+      "DeepSeek API",
+      "CVAT",
+    ],
+  },
+  {
+    title: "Cloud & DevOps",
+    items: [
+      "AWS (EC2)",
+      "Docker",
+      "Terraform",
+      "Nginx",
+      "Linux (Ubuntu)",
+      "Server config",
+    ],
+  },
+  {
+    title: "Networking & IT",
+    items: [
+      "LAN / Wi-Fi",
+      "Cisco",
+      "Active Directory",
+      "Google Workspace",
+      "Helpdesk",
+      "AnyDesk",
+    ],
+  },
 ];
 
+// Kept for any older imports; About now uses skillGroups
+export const skills = skillGroups.flatMap((group) =>
+  group.items.map((name) => ({ name, type: group.title }))
+);
+
 export const experiences = [
-    {
-        title: "React.js Developer",
-        company_name: "Starbucks",
-        icon: starbucks,
-        iconBg: "#accbe1",
-        date: "March 2020 - April 2021",
-        points: [
-            "Developing and maintaining web applications using React.js and other related technologies.",
-            "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-            "Implementing responsive design and ensuring cross-browser compatibility.",
-            "Participating in code reviews and providing constructive feedback to other developers.",
-        ],
-    },
-    {
-        title: "React Native Developer",
-        company_name: "Tesla",
-        icon: tesla,
-        iconBg: "#fbc3bc",
-        date: "Jan 2021 - Feb 2022",
-        points: [
-            "Developing and maintaining web applications using React.js and other related technologies.",
-            "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-            "Implementing responsive design and ensuring cross-browser compatibility.",
-            "Participating in code reviews and providing constructive feedback to other developers.",
-        ],
-    },
-    {
-        title: "Web Developer",
-        company_name: "Shopify",
-        icon: shopify,
-        iconBg: "#b7e4c7",
-        date: "Jan 2022 - Jan 2023",
-        points: [
-            "Developing and maintaining web applications using React.js and other related technologies.",
-            "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-            "Implementing responsive design and ensuring cross-browser compatibility.",
-            "Participating in code reviews and providing constructive feedback to other developers.",
-        ],
-    },
-    {
-        title: "Full stack Developer",
-        company_name: "Meta",
-        icon: meta,
-        iconBg: "#a2d2ff",
-        date: "Jan 2023 - Present",
-        points: [
-            "Developing and maintaining web applications using React.js and other related technologies.",
-            "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-            "Implementing responsive design and ensuring cross-browser compatibility.",
-            "Participating in code reviews and providing constructive feedback to other developers.",
-        ],
-    },
+  {
+    title: "Software Engineer",
+    company_name: "Blvcksapphire Gh LTD",
+    initials: "BS",
+    iconBg: "#B8F5D4",
+    date: "Jan 2023 – Present",
+    points: [
+      "Build and support production systems for healthcare, security, recruitment, and logistics clients across backend, AI, cloud, and network deployment.",
+      "Presented live demos to prospective clients and senior stakeholders, including the Minister of Health.",
+      "NHIS claims backend and rules engine for approve / reject / flag decisions against clinical guidelines, plus WebSocket facility dashboards.",
+      "Helix AI: retrieval-based clinical QA with local embeddings, PHI de-identification (Presidio), NeMo Guardrails, and AWS EC2 Docker staging.",
+      "CCTV analytics with YOLO detection, number-plate and face recognition, running 8 camera streams on AWS EC2.",
+      "Built Diatel (diateldelivery.com) end to end — customer delivery requests across Accra and operations order management.",
+      "Pharmacy POS for 6 pharmacies; job portal serving ~400 applicants; CVAT mining-area annotation for model training.",
+    ],
+  },
+  {
+    title: "IT Officer",
+    company_name: "Pharmacy Council Ghana, Koforidua",
+    initials: "PC",
+    iconBg: "#7dd3fc",
+    date: "Sep 2025 – Oct 2026",
+    points: [
+      "Sole IT officer for the office — network, systems, security, and end-user support for 7 staff.",
+      "Built an Arkesel messaging app to reach ~3,000 OTC medicine sellers across the Eastern Region, plus a monitoring web app for SMS delivery status.",
+      "Set up and maintained LAN / Wi-Fi with Cisco gear, routers, switches, and structured cabling; managed ISP connectivity.",
+      "Handled OS installs, antivirus, Active Directory / Google Workspace accounts, backups, licensing, helpdesk (WhatsApp + AnyDesk), and vendor coordination.",
+    ],
+  },
+  {
+    title: "Frontend Developer & IT Support Intern",
+    company_name: "Mobile Web Ghana | American Corner",
+    initials: "MW",
+    iconBg: "#fcd34d",
+    date: "Internship",
+    points: [
+      "Designed websites as a frontend developer.",
+      "Provided IT support and handled presentations.",
+    ],
+  },
+];
+
+export const education = {
+  degree: "B.Tech, Computer Science",
+  school: "Accra Technical University, Accra, Ghana",
+  date: "Expected Sep 2027",
+};
+
+export const certifications = [
+  {
+    name: "AWS Certified Cloud Practitioner",
+    issuer: "Amazon Web Services",
+    date: "2026",
+  },
 ];
 
 export const socialLinks = [
-    {
-        name: 'Contact',
-        iconUrl: contact,
-        link: '/contact',
-    },
-    {
-        name: 'GitHub',
-        iconUrl: github,
-        link: 'https://github.com/YourGitHubUsername',
-    },
-    {
-        name: 'LinkedIn',
-        iconUrl: linkedin,
-        link: 'https://www.linkedin.com/in/YourLinkedInUsername',
-    }
+  {
+    name: "Contact",
+    iconUrl: contact,
+    link: "/contact",
+  },
 ];
 
 export const projects = [
-    {
-        iconUrl: pricewise,
-        theme: 'btn-back-red',
-        name: 'Amazon Price Tracker',
-        description: 'Developed a web application that tracks and notifies users of price changes for products on Amazon, helping users find the best deals.',
-        link: 'https://github.com/adrianhajdin/pricewise',
-    },
-    {
-        iconUrl: threads,
-        theme: 'btn-back-green',
-        name: 'Full Stack Threads Clone',
-        description: 'Created a full-stack replica of the popular discussion platform "Threads," enabling users to post and engage in threaded conversations.',
-        link: 'https://github.com/adrianhajdin/threads',
-    },
-    {
-        iconUrl: car,
-        theme: 'btn-back-blue',
-        name: 'Car Finding App',
-        description: 'Designed and built a mobile app for finding and comparing cars on the market, streamlining the car-buying process.',
-        link: 'https://github.com/adrianhajdin/project_next13_car_showcase',
-    },
-    {
-        iconUrl: snapgram,
-        theme: 'btn-back-pink',
-        name: 'Full Stack Instagram Clone',
-        description: 'Built a complete clone of Instagram, allowing users to share photos and connect with friends in a familiar social media environment.',
-        link: 'https://github.com/adrianhajdin/social_media_app',
-    },
-    {
-        iconUrl: estate,
-        theme: 'btn-back-black',
-        name: 'Real-Estate Application',
-        description: 'Developed a web application for real estate listings, facilitating property searches and connecting buyers with sellers.',
-        link: 'https://github.com/adrianhajdin/projects_realestate',
-    },
-    {
-        iconUrl: summiz,
-        theme: 'btn-back-yellow',
-        name: 'AI Summarizer Application',
-        description: 'App that leverages AI to automatically generate concise & informative summaries from lengthy text content, or blogs.',
-        link: 'https://github.com/adrianhajdin/project_ai_summarizer',
-    }
+  {
+    name: "Diatel Delivery",
+    description:
+      "Live delivery platform for Accra — customer request/tracking app and operations order management, built end to end.",
+    status: "live",
+    url: "https://diateldelivery.com",
+  },
+  {
+    name: "Helix AI (Helix Health)",
+    description:
+      "Retrieval-based clinical QA with local embeddings, Presidio PHI de-identification, NeMo Guardrails, and Docker deployment on AWS EC2.",
+    status: "private",
+    url: null,
+  },
+  {
+    name: "NHIS Claims System",
+    description:
+      "Backend and rules-based decision engine for patient claims against Standard Treatment Guidelines, with WebSocket facility dashboards.",
+    status: "private",
+    url: null,
+  },
+  {
+    name: "CCTV Analytics",
+    description:
+      "Multi-camera analytics with YOLO person/vehicle detection, number-plate OCR, and face recognition vector matching on AWS EC2.",
+    status: "private",
+    url: null,
+  },
+  {
+    name: "Pharmacy POS",
+    description:
+      "Point-of-sale apps for 6 pharmacies covering sales, inventory, receipts, and reporting.",
+    status: "private",
+    url: null,
+  },
+  {
+    name: "Seller Messaging System",
+    description:
+      "Arkesel-powered notices to ~3,000 OTC sellers across the Eastern Region, with SMS status monitoring for Pharmacy Council Ghana.",
+    status: "private",
+    url: null,
+  },
 ];
