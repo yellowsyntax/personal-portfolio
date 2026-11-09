@@ -33,6 +33,14 @@ export const site = {
     tagline:
       "Healthcare AI, claims engines, delivery logistics, CCTV analytics, and IT tooling — shipped and supported end to end.",
   },
+  contactHero: {
+    image: "/images/contact-hero.jpg?v=1",
+    headline: ["LET'S", "TALK"],
+    kicker: "Contact · Open for Work",
+    tagline:
+      "Have a project, collaboration, or role in mind — send a note and I’ll get back to you.",
+    watermark: "alpine",
+  },
 };
 
 export const skillGroups = [

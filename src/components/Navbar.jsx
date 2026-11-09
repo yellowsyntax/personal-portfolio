@@ -2,7 +2,7 @@ import { NavLink, useLocation } from "react-router-dom";
 
 import { site } from "../constants";
 
-const lightRoutes = ["/contact"];
+const lightRoutes = [];
 
 const Navbar = () => {
   const { pathname } = useLocation();

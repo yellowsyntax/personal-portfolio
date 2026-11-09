@@ -1,66 +1,48 @@
 import { Link } from "react-router-dom";
 
-import { arrow } from "../assets/icons";
+const stages = {
+  1: {
+    kicker: "Christian Oduro",
+    title: "Software Engineer & IT Officer",
+    body: "Building backend, AI, and cloud systems from Ghana.",
+  },
+  2: {
+    kicker: "About",
+    title: "Backend, AI, cloud & IT ops",
+    body: "Systems for healthcare, security, recruitment, and logistics.",
+    cta: { to: "/about", label: "Learn more" },
+  },
+  3: {
+    kicker: "Projects",
+    title: "From Expert systems to Diatel deliveries",
+    body: "Curious about the work I’ve shipped?",
+    cta: { to: "/projects", label: "View projects" },
+  },
+  4: {
+    kicker: "Contact",
+    title: "Need a project done?",
+    body: "I’m a few keystrokes away.",
+    cta: { to: "/contact", label: "Let’s talk" },
+  },
+};
 
 const HomeInfo = ({ currentStage }) => {
-  if (currentStage === 1)
-    return (
-      <h1 className='sm:text-xl sm:leading-snug text-center neo-brutalism-blue py-4 px-8 text-white mx-5'>
-        Hi, I'm Christian
-        <span className='font-semibold mx-2 text-white'></span>
-      👋
-        <br />
-        Software Engineer & IT Systems Specialist from Ghana 🇬🇭
-      </h1>
-    );
+  const stage = stages[currentStage];
+  if (!stage) return null;
 
-  if (currentStage === 2) {
-    return (
-      <div className='info-box'>
-        <p className='font-medium sm:text-xl text-center'>
-          Backend, AI, cloud & IT ops <br /> for healthcare, security & logistics
-        </p>
-
-        <Link to='/about' className='neo-brutalism-white neo-btn'>
-          Learn more
-          <img src={arrow} alt='arrow' className='w-4 h-4 object-contain' />
+  return (
+    <div className='island-tip'>
+      <p className='island-tip__kicker'>{stage.kicker}</p>
+      <h1 className='island-tip__title'>{stage.title}</h1>
+      <p className='island-tip__body'>{stage.body}</p>
+      {stage.cta ? (
+        <Link to={stage.cta.to} className='island-tip__cta'>
+          <span>{stage.cta.label}</span>
+          <span aria-hidden='true'>→</span>
         </Link>
-      </div>
-    );
-  }
-
-  if (currentStage === 3) {
-    return (
-      <div className='info-box'>
-        <p className='font-medium text-center sm:text-xl'>
-          From Expert systems to Diatel deliveries. <br /> Curious about the
-          work?
-        </p>
-
-        <Link to='/projects' className='neo-brutalism-white neo-btn'>
-          Visit my portfolio
-          <img src={arrow} alt='arrow' className='w-4 h-4 object-contain' />
-        </Link>
-      </div>
-    );
-  }
-
-  if (currentStage === 4) {
-    return (
-      <div className='info-box'>
-      <p className='font-medium sm:text-xl text-center'>
-        Need a project done or looking for a dev? <br/> I'm just a few keystrokes away
-      </p>
-
-      <Link to='/contact' className='neo-brutalism-white neo-btn'>
-        Let's talk
-        <img src={arrow} alt='arrow' className='w-4 h-4 object-contain' />
-      </Link>
+      ) : null}
     </div>
-    );
-  }
-
-  return null;
+  );
 };
 
 export default HomeInfo;
