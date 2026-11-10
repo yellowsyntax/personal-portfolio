@@ -173,6 +173,13 @@ export const projects = [
     url: "https://diateldelivery.com",
   },
   {
+    name: "Christian Board",
+    description:
+      "Personal Excalidraw-based whiteboard for sketches and diagrams — branded React + Vite app with dark canvas and preinstalled shape libraries.",
+    status: "live",
+    url: "https://chrisoard.netlify.app/",
+  },
+  {
     name: "Helix AI (Helix Health)",
     description:
       "Retrieval-based clinical QA with local embeddings, Presidio PHI de-identification, NeMo Guardrails, and Docker deployment on AWS EC2.",

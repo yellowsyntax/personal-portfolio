@@ -1333,12 +1333,22 @@ body:has(.card[data-color="green"]:hover) {
 
 .projects-below {
   --projects-mint: #a8f0d1;
+  --projects-grid: rgba(184, 245, 212, 0.07);
   position: relative;
-  background: #0b0b0b;
+  isolation: isolate;
+  overflow-x: clip;
   color: #fff;
+  background-color: #0b0b0b;
+  background-image:
+    linear-gradient(to right, var(--projects-grid) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--projects-grid) 1px, transparent 1px);
+  background-size: 120px 120px;
+  background-position: center top;
 }
 
 .projects-below__inner {
+  position: relative;
+  z-index: 1;
   width: calc(100% - 2 * clamp(16px, 3vw, 48px));
   max-width: 1600px;
   margin: 0 auto;

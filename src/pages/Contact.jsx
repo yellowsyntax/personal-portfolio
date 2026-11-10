@@ -1,4 +1,3 @@
-import emailjs from "@emailjs/browser";
 import { useRef, useState } from "react";
 
 import useAlert from "../hooks/useAlert";
@@ -15,52 +14,47 @@ const Contact = () => {
     setForm({ ...form, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
 
-    emailjs
-      .send(
-        import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
-        import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID,
-        {
-          from_name: form.name,
-          to_name: "Christian Oduro",
-          from_email: form.email,
-          to_email: site.email,
-          message: form.message,
-        },
-        import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY
-      )
-      .then(
-        () => {
-          setLoading(false);
-          showAlert({
-            show: true,
-            text: "Thank you for your message — I’ll reply soon.",
-            type: "success",
-          });
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
 
-          setTimeout(() => {
-            hideAlert(false);
-            setForm({
-              name: "",
-              email: "",
-              message: "",
-            });
-          }, 3000);
-        },
-        (error) => {
-          setLoading(false);
-          console.error(error);
+      const data = await response.json().catch(() => ({}));
 
-          showAlert({
-            show: true,
-            text: "Something went wrong — please try again or email me directly.",
-            type: "danger",
-          });
-        }
-      );
+      if (!response.ok) {
+        throw new Error(data.error || "Failed to send message");
+      }
+
+      showAlert({
+        show: true,
+        text: "Thank you for your message — I’ll reply soon.",
+        type: "success",
+      });
+
+      setTimeout(() => {
+        hideAlert(false);
+        setForm({
+          name: "",
+          email: "",
+          message: "",
+        });
+      }, 3000);
+    } catch (error) {
+      console.error(error);
+      showAlert({
+        show: true,
+        text: "Something went wrong — please try again or email me directly.",
+        type: "danger",
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -118,7 +112,10 @@ const Contact = () => {
               </a>
 
               <p className='contact-meta__label'>Phone</p>
-              <a className='contact-meta__value' href={`tel:${site.phone.replace(/\s+/g, "")}`}>
+              <a
+                className='contact-meta__value'
+                href={`tel:${site.phone.replace(/\s+/g, "")}`}
+              >
                 {site.phone}
               </a>
 

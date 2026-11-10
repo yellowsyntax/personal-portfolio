@@ -71,8 +71,8 @@ const Projects = () => {
             </h2>
             <p className='projects-intro'>
               Selected work across healthcare AI, claims systems, delivery
-              logistics, CCTV analytics, pharmacy POS, and IT tooling — systems
-              I&apos;ve built, deployed, and supported in production.
+              logistics, CCTV analytics, pharmacy POS, personal tools, and IT
+              tooling — systems I&apos;ve built, deployed, and supported.
             </p>
           </header>
 
